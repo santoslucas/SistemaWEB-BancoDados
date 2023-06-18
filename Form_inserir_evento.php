@@ -16,7 +16,7 @@ print <<<_HTML_
     <BR/>
     Email: <input type="text" name="Email_promotor">
     <BR/>
-    <INPUT type="submit" value="Inserir Empregado">
+    <INPUT type="submit" value="Inserir Evento">
     </FORM>
     _HTML_;
 ?>
