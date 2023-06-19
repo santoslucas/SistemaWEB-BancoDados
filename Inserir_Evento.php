@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $c = oci_connect("ECLBDIT207", "Cebcdhj2702@", "bdengcomp_low");
 if (!$c) {
@@ -7,21 +8,27 @@ if (!$c) {
 }
 
 if($_POST['ID'] && $_POST['Nome'] && $_POST['Descricao'] && $_POST['Valor']
-&& $_POST['Local'] && $_POST['Qtd_ingressos'] && $_POST['Email_promotor']){
+&& $_POST['Local'] && $_POST['Qtd_ingressos']){
     
-    $s = oci_parse($c, "INSERT INTO EVENTO VALUES (:1, :2, :3, :4, :5, :6, :7)");
+
+    $ID = $_POST['ID'];
+    $Nome =  $_POST['Nome'];
+    $Descricao = $_POST['Descricao'];
+    $Valor = $_POST['Valor'];
+    $Local = $_POST['Local'];
+    $Qtd_ingressos = $_POST['Qtd_ingressos'];
+    if (isset($_SESSION['email'])) {
+        $promotor_email = $_SESSION['email'];
+    } else {
+        $promotor_email = '';
+    }
+
+    $s = oci_parse($c, "INSERT INTO EVENTO VALUES ('$ID','$Nome','$Descricao','$Valor','$Local','$Qtd_ingressos','$promotor_email')");
     if (!$s) {
         $m = oci_error($c);
         trigger_error("Não pôde compilar a sentença: ". $m["message"], E_USER_ERROR);
     }
 
-    oci_bind_by_name($s, ":1", $_POST['ID']);
-    oci_bind_by_name($s, ":2", $_POST['Nome']);
-    oci_bind_by_name($s, ":3", $_POST['Descricao']);
-    oci_bind_by_name($s, ":4", $_POST['Valor']);
-    oci_bind_by_name($s, ":5", $_POST['Local']);
-    oci_bind_by_name($s, ":6", $_POST['Qtd_ingressos']);
-    oci_bind_by_name($s, ":7", $_POST['Email_promotor']);
     $r = oci_execute($s, OCI_NO_AUTO_COMMIT); // for PHP <= 5.3.1 use OCI_DEFAULT instead
 
     if (!$r) {
@@ -36,7 +43,7 @@ if($_POST['ID'] && $_POST['Nome'] && $_POST['Descricao'] && $_POST['Valor']
     // Redirecionar para a página do evento
 
     if($_POST['ID'] && $_POST['Nome'] && $_POST['Descricao'] && $_POST['Valor']
-    && $_POST['Local'] && $_POST['Qtd_ingressos'] && $_POST['Email_promotor']){
+    && $_POST['Local'] && $_POST['Qtd_ingressos']){
         
     
 

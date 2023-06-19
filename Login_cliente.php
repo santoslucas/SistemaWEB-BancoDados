@@ -1,56 +1,52 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        form {
-            text-align: center;
-        }
-        form label, form input[type="submit"] {
-            display: block;
-            margin: 10px auto;
-            text-align: left;
-            width: 200px;
-        }
-        p {
-            text-align: center;
-        }
-        .login-title {
-            text-align: center;
-            color: purple;
-            font-size: 24px;
-        }
-        .login-input {
-            display: block;
-            margin: 0 auto;
-            width: 200px;
-        }
-        .create-account {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .create-account p {
-            margin: 0;
-        }
-    </style>
+  <title>Login</title>
+  <style>
+    body {
+      background-color: #E6E6FA; /* Código hexadecimal para a cor roxo lilás claro */
+    }
+
+    html, body {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-container {
+      text-align: center;
+    }
+
+    .form-group {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .form-group label {
+      margin-right: 10px;
+    }
+  </style>
 </head>
 <body>
-    <h2 class="login-title">Login</h2>
-    <form action="Verificar_login_cliente.php" method="post">
+  <div class="login-container">
+    <h2>Login</h2>
+    <form method="POST" action="Verificar_login_cliente.php">
+      <div class="form-group">
         <label for="email">Email:</label>
-        <input class="login-input" type="email" id="email" name="email" required><br>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
         <label for="senha">Senha:</label>
-        <input class="login-input" type="password" id="senha" name="senha" required><br>
-        <input type="submit" value="Entrar">
+        <input type="password" id="senha" name="senha" required>
+      </div>
+
+      <input type="submit" value="Entrar">
     </form>
-    <br>
-    <p class="create-account">Não tenho uma conta. <a href="Form_cadastrar_cliente.php">Criar conta</a></p>
+    <p>Não tenho uma conta. <a href="Form_cadastrar_cliente.php">Criar conta</a></p>
+  </div>
 </body>
 </html>

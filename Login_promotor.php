@@ -1,18 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tela de Login</title>
+    <title>Login</title>
+    <style>
+        body {
+            background-color: #E6E6FA; /* Código hexadecimal para a cor roxo lilás claro */
+        }
+
+        html, body {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            text-align: center;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h2>Tela de Login</h2>
-    <form action="Verificar_login_promotor.php" method="post">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required><br><br>
-        <input type="submit" value="Entrar">
-    </form>
-    <br>
-    <p>Não tenho uma conta. <a href="Form_cadastrar_promotor.php">Criar conta</a></p>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="Verificar_login_promotor.php" method="post">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required>
+            </div>
+
+            <input type="submit" value="Entrar">
+        </form>
+        <br>
+        <p>Quer ser um promotor? <a href="Form_cadastrar_promotor.php">Criar conta</a></p>
+    </div>
 </body>
 </html>

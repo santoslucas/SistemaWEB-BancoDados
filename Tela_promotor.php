@@ -19,10 +19,10 @@ $email = $_SESSION['email'];
 <body>
     <h2>Informações do Promotor</h2>
     <p>Email: <?php echo $email; ?></p>
-    <p>Nome: <?php echo $nome_promotor; ?></p>
 
     <h3>Opções</h3>
     <ul>
+        <li><a href="Promotor_consulta_evento.php">Consultar Eventos</a></li>
         <li><a href="Form_inserir_evento.php">Cadastrar Evento</a></li>
         <li><a href="Form_cadastrar_cupom.php">Cadastrar Cupom</a></li>
     </ul>

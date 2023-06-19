@@ -14,8 +14,6 @@ print <<<_HTML_
     <BR/>
     Quantidade de ingressos: <input type="number" name="Qtd_ingressos">
     <BR/>
-    Email: <input type="text" name="Email_promotor">
-    <BR/>
     <INPUT type="submit" value="Inserir Evento">
     </FORM>
     _HTML_;
