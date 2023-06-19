@@ -95,7 +95,7 @@ if($_POST['ID'] && $_POST['Nome'] && $_POST['Descricao'] && $_POST['Valor']
 }
     //--------------------------------------------------------------------------------------
 
-    //header("Location: pagina_evento.php?id=" . $_POST['ID'] . "&nome=" . urlencode($nomeEvento));
+    header("Location: Pagina_evento.php?id=" . $_POST['ID'] . "&nome=" . urlencode($nomeEvento));
     exit;
 
 ?>

@@ -1,115 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Página do Evento</title>
-    <style>
-        body {
-            background-color: #f1f1f1;
-            font-family: Arial, sans-serif;
-        }
+<?php
+    session_start();
 
-        .header {
-            background-color: purple;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+    $c = oci_connect("ECLBDIT207", "Cebcdhj2702@", "bdengcomp_low");
+    if (!$c) {
+        $m = oci_error();
+        trigger_error("Could not connect to database: ". $m["message"], E_USER_ERROR);
+    }
 
-        .evento-info {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px;
-        }
+    // Verificar se o usuário está logado, caso contrário, redirecionar para a tela de login
+    if (!isset($_SESSION['email'])) {
+        header('Location: Verificar_login_cliente.php');
+        exit;
+    }
+    
+    // Aqui você pode obter as informações do cliente a partir da sessão
+    $email = $_SESSION['email'];
 
-        .evento-info-left {
-            width: 60%;
-        }
+    if(isset($_GET['id'])) {
+        $eventoID = $_GET['id'];
+        //$_SESSION['eventoID'] = $eventoID;
+    }
 
-        .evento-info-right {
-            width: 35%;
-        }
+    $query = "SELECT * FROM EVENTO E WHERE E.ID = '$eventoID'";
+    $stmt = oci_parse($c, $query);
+    oci_execute($stmt);
 
-        .data-horario {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+    // Recupere os dados do evento em um array associativo
+    $evento = oci_fetch_assoc($stmt);
 
-        .descricao {
-            margin-top: 10px;
-        }
+    // Atribua os valores das colunas a variáveis individuais
+    $nome = $evento['Nome'];
+    $descricao = $evento['Descricao'];
+    $valor = $evento['Valor'];
+    $local = $evento['Local'];
+    $qtd_ingressos = $evento['qtd_ingressos'];
+    $email_promotor = $evento['Email_promotor'];
+    
+    $query = "SELECT * FROM USUARIO U WHERE U.Email = '$email_promotor'";
+    $stmt = oci_parse($c, $query);
+    oci_execute($stmt);
 
-        .ingressos {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-        }
+    // Recupere os dados do promotor em um array associativo
+    $promotor = oci_fetch_assoc($stmt);
+    $nome_promotor = $promotor['Nome'];
 
-        .ingressos h2 {
-            color: purple;
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-
-        .ingresso-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 10px;
-        }
-
-        .ingresso-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .ingresso-nome {
-            font-weight: bold;
-        }
-
-        .ingresso-preco {
-            font-weight: bold;
-        }
-
-        .adicionar-carrinho {
-            background-color: purple;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .adicionar-carrinho:hover {
-            background-color: #6e00b3;
-        }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1><?php echo $nome; ?></h1>
-    </div>
-
-    <div class="evento-info">
-        <div class="evento-info-left">
-            <p class="data-horario">Data e Horário: <?php echo $data_horario; ?></p>
-            <p class="descricao"><?php echo $descricao; ?></p>
-        </div>
-        <div class="evento-info-right">
-            <div class="ingressos">
-                <h2>Ingressos</h2>
-                <?php foreach ($ingressos as $ingresso) { ?>
-                    <div class="ingresso-item">
-                        <div class="ingresso-nome"><?php echo $ingresso['nome']; ?></div>
-                        <div class="ingresso-preco"><?php echo $ingresso['preco']; ?></div>
-                    </div>
-                <?php } ?>
-
-                <button class="adicionar-carrinho">Adicionar ao Carrinho</button>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+    echo $nome;
+    echo 'Descricao: '. $descricao;
+    echo 'Valor: ' . 
+?>
