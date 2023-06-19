@@ -38,9 +38,7 @@ if($_POST['ID'] && $_POST['ID_evento'] && $_POST['Desconto']){
         }
 
         oci_commit($c);
-
-        //AQUI FALTA PREENCHER A COLUNA ID_CUPOM DA TABELA INGRESSO PARA TODOS OS EVENTOS
-
+        
         echo "Cupom criado!";
 
     } else {

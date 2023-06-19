@@ -9,7 +9,7 @@
 
     // Verificar se o usuário está logado, caso contrário, redirecionar para a tela de login
     if (!isset($_SESSION['email'])) {
-        header('Location: Verificar_login_cliente.php');
+        header('Location: Login_cliente.php');
         exit;
     }
     
@@ -18,7 +18,7 @@
 
     if(isset($_GET['id'])) {
         $eventoID = $_GET['id'];
-        //$_SESSION['eventoID'] = $eventoID;
+        $_SESSION['eventoID'] = $eventoID;
     }
 
     $query = "SELECT * FROM EVENTO E WHERE E.ID = '$eventoID'";
@@ -29,12 +29,12 @@
     $evento = oci_fetch_assoc($stmt);
 
     // Atribua os valores das colunas a variáveis individuais
-    $nome = $evento['Nome'];
-    $descricao = $evento['Descricao'];
-    $valor = $evento['Valor'];
-    $local = $evento['Local'];
-    $qtd_ingressos = $evento['qtd_ingressos'];
-    $email_promotor = $evento['Email_promotor'];
+    $nome = $evento['NOME'];
+    $descricao = $evento['DESCRICAO'];
+    $valor = $evento['VALOR'];
+    $local = $evento['LOCAL'];
+    $qtd_ingressos = $evento['QTD_INGRESSOS'];
+    $email_promotor = $evento['EMAIL_PROMOTOR'];
     
     $query = "SELECT * FROM USUARIO U WHERE U.Email = '$email_promotor'";
     $stmt = oci_parse($c, $query);
@@ -42,9 +42,18 @@
 
     // Recupere os dados do promotor em um array associativo
     $promotor = oci_fetch_assoc($stmt);
-    $nome_promotor = $promotor['Nome'];
-
-    echo $nome;
-    echo 'Descricao: '. $descricao;
-    echo 'Valor: ' . 
+    $nome_promotor = $promotor['NOME'];
 ?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <h1><?php echo $nome; ?></h1>
+</head>
+<body>
+    <h3>Descricao:</h3>
+    <p><?php echo $descricao; ?></p>
+    <p><a href="Form_comprar_ingresso.php">Comprar</a></p>
+</body>
+</html>
