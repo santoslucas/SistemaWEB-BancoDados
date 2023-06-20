@@ -70,28 +70,33 @@
     <form method="post" action="Comprar_ingresso.php">
       <div class="form-group">
         <label for="numInteira">Quantidade de ingressos inteira:</label>
-        <input type="number" name="numInteira">
-        <?php $s = oci_parse($c, "SELECT COUNT(*) FROM INGRESSO WHERE ID_evento='$eventoID' and Tipo='Inteira' and Email_cliente is null");
+        <input type="number" name="numInteira" value=0 min="0">
+        <?php $s = oci_parse($c, "SELECT COUNT(ID) as quantidade FROM INGRESSO WHERE ID_evento='$eventoID' and Tipo='Inteira' and Email_cliente is null group by ID_evento");
+              
               if (!$s) {
                 $m = oci_error($c);
                 trigger_error("Não pôde compilar a sentença: ". $m["message"], E_USER_ERROR);
               }
 
-              $r = oci_execute($s, OCI_NO_AUTO_COMMIT); // for PHP <= 5.3.1 use OCI_DEFAULT instead
+              oci_execute($s); // for PHP <= 5.3.1 use OCI_DEFAULT instead
 
-              if ($r == 1)
-                echo $r . " disponivel <br>";
-              else if ($r == 0)
-                echo "nenhum disponivel <br>";
-              else  
-                echo $r . " disponiveis <br>";
+              // Obtém a quantidade de ingressos
+              if ($row = oci_fetch_assoc($s)) {
+                $quantidadeIngressos = $row["QUANTIDADE"];
+                if ($quantidadeIngressos > 1)
+                  echo "$quantidadeIngressos disponíveis";
+                else
+                  echo "$1 disponível";
+              } 
+              else 
+                echo "Indisponível";
         ?>
       </div>
       <br>
       <div class="form-group">
         <label for="numMeia">Quantidade de ingressos meia:</label>
-        <input type="number" name="numMeia">
-        <?php $s = oci_parse($c, "SELECT COUNT(*) FROM INGRESSO WHERE ID_evento='$eventoID' and Tipo='Meia' and Email_cliente is null");
+        <input type="number" name="numMeia" value=0 min="0">
+        <?php $s = oci_parse($c, "SELECT COUNT(ID) as quantidade FROM INGRESSO WHERE ID_evento='$eventoID' and Tipo='Meia' and Email_cliente is null group by ID_evento");
               if (!$s) {
                 $m = oci_error($c);
                 trigger_error("Não pôde compilar a sentença: ". $m["message"], E_USER_ERROR);
@@ -99,12 +104,16 @@
 
               $r = oci_execute($s, OCI_NO_AUTO_COMMIT); // for PHP <= 5.3.1 use OCI_DEFAULT instead
 
-              if ($r == 1)
-                echo $r . " disponivel <br>";
-              else if ($r == 0)
-                echo "nenhum disponivel <br>";
-              else  
-                echo $r . " disponiveis <br>";
+              // Obtém a quantidade de ingressos
+              if ($row = oci_fetch_assoc($s)) {
+                $quantidadeIngressos = $row["QUANTIDADE"];
+                if ($quantidadeIngressos > 1)
+                  echo "$quantidadeIngressos disponíveis";
+                else
+                  echo "$1 disponível";
+              } 
+              else 
+                echo "Indisponível";
         ?>
       </div>
       <br>
@@ -114,6 +123,7 @@
       </div>
       <br>
       <input type="submit" value="Finalizar compra">
+      
     </form>
   </div>
 </body>

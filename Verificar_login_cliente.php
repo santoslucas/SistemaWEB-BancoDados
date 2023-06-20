@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $c = oci_connect("ECLBDIT207", "Cebcdhj2702@", "bdengcomp_low");
     if (!$c) {
         $m = oci_error();
@@ -17,6 +18,8 @@
     if ($row) {
         // Login bem-sucedido
         echo "Login bem-sucedido!";
+        $_SESSION['email'] = $email;
+        header("Location: Tela_cliente.php");
     } else {
         // Login falhou
         echo "Email ou senha inválidos.";
