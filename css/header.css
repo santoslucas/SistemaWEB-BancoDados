@@ -1,0 +1,38 @@
+.header {
+    background-color: #9370DB; /* Código hexadecimal para a cor roxo médio */
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end; /* Alinha os itens à direita */
+    align-items: center;
+}
+
+.header h1 {
+    color: #FFFFFF; /* Código hexadecimal para a cor branca */
+    font-size: 24px;
+    margin: 0 auto;
+    position: absolute; /* Define a posição como absoluta */
+    left: 50%; /* Move o elemento para o meio da tela */
+    transform: translateX(-50%); /* Alinha o elemento corretamente */
+}
+
+.header .buttons {
+    display: flex;
+    align-items: center;
+}
+
+.header .buttons a {
+    color: #FFFFFF;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.header .buttons a:first-child {
+    margin-left: 0;
+}
+
+.header .buttons a:not(:last-child)::after {
+    content: "|";
+    margin-left: 5px;
+}

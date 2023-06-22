@@ -14,6 +14,7 @@
             height: 300px; /* Defina a altura desejada */
             margin: 0 auto; /* Centralize horizontalmente */
         }
+
     </style>
     <!-- Adicione os links para os arquivos do Bootstrap CSS e JavaScript -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -21,7 +22,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-    <h1>Página Principal</h1>
+    <div class="header">
+        <h1>TESSERACT</h1>
+        <a href="pagina_principal.php" class="logout">Sair</a>
+    </div>
 
     <!-- Adicione o carrossel de imagens -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -69,4 +73,9 @@
     <div style="text-align: center;">
         <div class="event">
             <a href="evento.php?evento=1">
-                <img src="imagem1.jpg" alt="Evento 1" width="200"
+            <img src="imagem1l.jpg" alt="Evento 1" width="200"
+        <div>
+    <div>
+<body>
+<link rel="stylesheet" href="css/header.css">
+</html>

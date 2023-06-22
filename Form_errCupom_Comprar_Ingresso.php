@@ -81,11 +81,13 @@
         <label for="IDcupom">Cupom:</label>
         <input type="text" name="IDcupom">
       </div>
+      <div class="print-only">
+        Cupom inválido!
+      </div>
       <br>
       <input type="submit" value="Finalizar compra">
     </form>
   </div>
 </body>
 <link rel="stylesheet" href="css/global.css">
-<link rel="stylesheet" href="css/header.css">
 </html>

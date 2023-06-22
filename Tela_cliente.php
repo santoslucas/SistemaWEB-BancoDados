@@ -1,11 +1,10 @@
 <?php
-session_start();
-
-// Verificar se o usuário está logado, caso contrário, redirecionar para a tela de login
-if (!isset($_SESSION['email'])) {
-    header('Location: Verificar_login_cliente.php');
-    exit;
-}
+    session_start();
+    // Verificar se o usuário está logado, caso contrário, redirecionar para a tela de login
+    if (!isset($_SESSION['email'])) {
+        header('Location: Login_cliente.php');
+        exit;
+    }
 
 // Aqui você pode obter as informações do promotor a partir da sessão
 $email = $_SESSION['email'];

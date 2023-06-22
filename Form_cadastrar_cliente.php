@@ -2,51 +2,24 @@
 <html>
 <head>
   <title>Preencha os dados do cliente</title>
-  <style>
-    body {
-      background-color: #E6E6FA; /* Código hexadecimal para a cor roxo lilás claro */
-      margin: 0;
-      padding: 0;
-    }
-
-    .header {
-      background-color: #9370DB; /* Código hexadecimal para a cor roxo escuro */
-      text-align: center;
-      padding: 20px;
-    }
-
-    .header h1 {
-      color: #FFFFFF; /* Código hexadecimal para a cor branca */
-      font-size: 40px;
-    }
-
-    .form-container {
-      text-align: center;
-      border: 2px solid black;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 20px;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .form-group {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-    }
-
-    .form-group label {
-      margin-right: 10px;
-    }
-  </style>
 </head>
 <body>
-  <div class="header">
-    <h1>TESSERACT</h1>
-  </div>
+<div class="header">
+        <h1>TESSERACT</h1>
+        <div class="buttons">
+          <?php
+          session_start();
+          if (isset($_SESSION['email'])) {
+            $email = $_SESSION['email'];
+            echo '<a href="perfil.php">' . $email . '</a>';
+          } else {
+            echo '<a href="Login_promotor.php">Login</a>';
+            header('Location: Login_promotor.php');
+          }
+          ?>
+          <a href="pagina_principal.php">Sair</a>
+        </div>
+    </div>
   <div class="form-container">
     <h3>Insira seus dados abaixo</h3>
     <form method="post" action="Cadastrar_Cliente.php">
@@ -79,4 +52,6 @@
     </form>
   </div>
 </body>
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/header.css">
 </html>

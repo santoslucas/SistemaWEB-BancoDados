@@ -6,17 +6,29 @@ if (!$c) {
     trigger_error("Could not connect to database: ". $m["message"], E_USER_ERROR);
 }
 
+session_start();
+
+// Verificar se o usuário está logado, caso contrário, redirecionar para a tela de login
+if (!isset($_SESSION['email'])) {
+    header('Location: Verificar_login_promotor.php');
+    exit;
+}
+
+// Aqui você pode obter as informações do promotor a partir da sessão
+$email = $_SESSION['email'];
+
 if($_POST['ID'] && $_POST['ID_evento'] && $_POST['Desconto']){
 
     //verifica se o evento ao qual se deseja atribuir o cupom existe
     $IDEvento = $_POST['ID_evento'];
-    $query = "SELECT * FROM CUPOM C INNER JOIN EVENTO E ON C.ID_evento = E.ID WHERE E.ID = :IDEvento";
+    $query = "SELECT * FROM EVENTO E WHERE E.ID = '$IDEvento' and E.Email_promotor = '$email'";
     $stmt = oci_parse($c, $query);
-    oci_bind_by_name($stmt, ":IDEvento", $IDEvento);
 
     oci_execute($stmt);
 
+
     $row = oci_fetch_assoc($stmt);
+
     if ($row) {
         //evento existe
 
@@ -45,8 +57,7 @@ if($_POST['ID'] && $_POST['ID_evento'] && $_POST['Desconto']){
         //evento não existe
         echo "O evento de ID :IDEvento não existe";
     }
-    
-    
+
 
 }
     
@@ -54,4 +65,6 @@ if($_POST['ID'] && $_POST['ID_evento'] && $_POST['Desconto']){
     exit;
 
 ?>
+
+
 

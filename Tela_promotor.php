@@ -1,32 +1,71 @@
-<?php
-session_start();
-
-// Verificar se o usuário está logado, caso contrário, redirecionar para a tela de login
-if (!isset($_SESSION['email'])) {
-    header('Location: Verificar_login_promotor.php');
-    exit;
-}
-
-// Aqui você pode obter as informações do promotor a partir da sessão
-$email = $_SESSION['email'];
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Página do Promotor</title>
+    <title>Tela do Promotor</title>
+    <style>
+        body {
+            background-color: #E6E6FA; /* Código hexadecimal para a cor roxo lilás claro */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            text-align: center;
+            border: 2px solid black;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        .container h2 {
+            margin-bottom: 10px;
+        }
+
+        .container ul {
+            padding: 0;
+            list-style-type: none;
+            margin-bottom: 10px;
+        }
+
+        .container ul li {
+            margin-bottom: 5px;
+        }
+
+        .container ul li a {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <h2>Informações do Promotor</h2>
-    <p>Email: <?php echo $email; ?></p>
+    <div class="header">
+        <h1>TESSERACT</h1>
+        <div class="buttons">
+            <?php
+            session_start();
+            if (isset($_SESSION['email'])) {
+                $email = $_SESSION['email'];
+                echo '<a href="perfil.php">' . $email . '</a>';
+            } else {
+                echo '<a href="Login.php">Login</a>';
+                header('Location: Login_promotor.php');
+            }
+            ?>
+            <a href="Deslogar.php">Sair</a>
+        </div>
+    </div>
 
-    <h3>Opções</h3>
-    <ul>
-        <li><a href="Promotor_consulta_evento.php">Consultar Eventos</a></li>
-        <li><a href="Form_inserir_evento.php">Cadastrar Evento</a></li>
-        <li><a href="Form_cadastrar_cupom.php">Cadastrar Cupom</a></li>
-    </ul>
+    <div class="container">
+        <h2>Informações do Promotor</h2>
+        <p>Email: <?php echo $email; ?></p>
 
-    <p><a href="Login_promotor.php">Sair</a></p>
+        <h3>Opções</h3>
+        <ul>
+            <li><a href="consultar_eventos.php">Consultar Eventos</a></li>
+            <li><a href="cadastrar_evento.php">Cadastrar Evento</a></li>
+            <li><a href="cadastrar_cupom.php">Cadastrar Cupom</a></li>
+        </ul>
+    </div>
 </body>
+<link rel="stylesheet" href="css/header.css">
 </html>

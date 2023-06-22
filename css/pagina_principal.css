@@ -1,0 +1,70 @@
+body {
+    background-color: #e0d9e1; /* Código hexadecimal para a cor roxo lilás claro */
+    margin: 0;
+    padding: 0;
+  }
+
+.event {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+}
+
+#myCarousel {
+    width: 400px; /* Defina o comprimento desejado */
+    height: 300px; /* Defina a altura desejada */
+    margin: 0 auto; /* Centralize horizontalmente */
+}
+
+.header {
+    background-color: #9370DB; /* Código hexadecimal para a cor roxo médio */
+    text-align: left;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imagem{
+    height: 50rem;
+    width: 60%;
+    background-image: url('logoT.png');
+    background-repeat: no-repeat;
+    background-size: 35rem;
+    background-position: auto, auto;
+    display: block;
+    margin: auto;
+}
+
+.header ::before{
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: auto;
+    right: auto;
+    width: auto;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('header.svg');
+}
+
+.header h1 {
+    color: #FFFFFF; /* Código hexadecimal para a cor branca */
+    font-size: 24px;
+    margin: 0;
+}
+
+.header .logout {
+    color: #FFFFFF;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 6rem;
+}
+
+.header .email {
+    color: #FFFFFF;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 20px;
+}
