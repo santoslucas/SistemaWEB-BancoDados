@@ -62,6 +62,12 @@ body {
     margin-right: 6rem;
 }
 
+.header .login {
+    color: #FFFFFF;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 6rem;
+}
 .header .email {
     color: #FFFFFF;
     font-weight: bold;

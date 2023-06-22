@@ -1,73 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Inserir Evento</title>
-  <style>
-    body {
-      background-color: #E6E6FA; /* Código hexadecimal para a cor roxo lilás claro */
-      margin: 0;
-      padding: 0;
-    }
-
-    .header {
-      background-color: #9370DB; /* Código hexadecimal para a cor roxo escuro */
-      text-align: center;
-      padding: 20px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      margin-bottom: 20px;
-    }
-
-    .header h1 {
-      color: #FFFFFF; /* Código hexadecimal para a cor branca */
-      font-size: 40px;
-      margin: 0;
-    }
-
-    .form-container {
-      text-align: left;
-      border: 2px solid black;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 100px;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .form-group {
-      display: flex;
-      align-items: center;
-      justify-content: left;
-      margin-bottom: 5px;
-    }
-
-    .form-group label {
-      margin-right: 10px;
-    }
-
-    .form-group input[type="number"],
-    .form-group input[type="text"] {
-      flex: 1;
-      width: 100%;
-      text-align: right;
-    }
-
-    .center-button {
-      display: flex;
-      justify-content: center;
-    }
-
-    .center-title {
-      text-align: center;
-    }
-  </style>
-</head>
 <body>
   <div class="header">
     <h1>TESSERACT</h1>
+    <div class="buttons">
+            <?php
+            session_start();
+            if (isset($_SESSION['email'])) {
+              $email = $_SESSION['email'];
+              echo '<a href="perfil.php">' . $email . '</a>';
+            }
+            ?>
+             <a href="Redireciona_principal.php" class="logout"><?php if(isset($_SESSION['email'])) echo 'Sair'; else echo 'Login'; ?></a>
+        </div>
   </div>
   <div class="form-container">
     <h3 class="center-title">Preencha os dados do evento</h3>
@@ -108,4 +53,6 @@
     </form>
   </div>
 </body>
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/header.css">
 </html>

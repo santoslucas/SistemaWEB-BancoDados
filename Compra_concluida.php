@@ -1,6 +1,5 @@
 <?php
     session_start();
-
     $c = oci_connect("ECLBDIT207", "Cebcdhj2702@", "bdengcomp_low");
     if (!$c) {
         $m = oci_error();
@@ -24,6 +23,16 @@
 <body>
   <div class="header">
     <h1>TESSERACT</h1>
+    <div class="buttons">
+            <?php
+          
+            if (isset($_SESSION['email'])) {
+              $email = $_SESSION['email'];
+              echo '<a href="perfil.php">' . $email . '</a>';
+            }
+            ?>
+             <a href="Redireciona_principal.php" class="logout"><?php if(isset($_SESSION['email'])) echo 'Sair'; else echo 'Login'; ?></a>
+        </div>
   </div>
   <div class="form-container">
     <h3>Compra concluída!</h3>
@@ -37,7 +46,8 @@
     ?> <br>
   </div>
 </body>
-<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/Style_login.css">
 </html>
 
 

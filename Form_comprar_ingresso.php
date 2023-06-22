@@ -24,6 +24,15 @@
 <body>
   <div class="header">
     <h1>TESSERACT</h1>
+    <div class="buttons">
+            <?php
+            if (isset($_SESSION['email'])) {
+              $email = $_SESSION['email'];
+              echo '<a href="perfil.php">' . $email . '</a>';
+          }
+            ?>
+             <a href="Redireciona_principal.php" class="logout"><?php if(isset($_SESSION['email'])) echo 'Sair'; else echo 'Login'; ?></a>
+        </div>
   </div>
   <div class="form-container">
     <h3>Insira os dados referentes a compra</h3>

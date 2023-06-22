@@ -1,29 +1,66 @@
-<?php
-    session_start();
-    // Verificar se o usuário está logado, caso contrário, redirecionar para a tela de login
-    if (!isset($_SESSION['email'])) {
-        header('Location: Login_cliente.php');
-        exit;
-    }
-
-// Aqui você pode obter as informações do promotor a partir da sessão
-$email = $_SESSION['email'];
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Página do Cliente</title>
+    <title>Tela do Cliente</title>
+    <style>
+        body {
+            background-color: #E6E6FA; /* Código hexadecimal para a cor roxo lilás claro */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            text-align: center;
+            border: 2px solid black;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        .container h2 {
+            margin-bottom: 10px;
+        }
+
+        .container ul {
+            padding: 0;
+            list-style-type: none;
+            margin-bottom: 10px;
+        }
+
+        .container ul li {
+            margin-bottom: 5px;
+        }
+
+        .container ul li a {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <h2>Informações do Cliente</h2>
-    <p>Email: <?php echo $email; ?></p>
+    <div class="header">
+        <h1>TESSERACT</h1>
+        <div class="buttons">
+            <?php
+            session_start();
+            if (isset($_SESSION['email'])) {
+                $email = $_SESSION['email'];
+                echo '<a href="perfil.php">' . $email . '</a>';
+            }
+            ?>
+             <a href="Redireciona_principal.php" class="logout"><?php if(isset($_SESSION['email'])) echo 'Sair'; else echo 'Login'; ?></a>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Informações do Cliente</h2>
+        <p>Email: <?php echo $email; ?></p>
 
-    <h3>Opções</h3>
-    <ul>
-        <li><a href="Cliente_consulta_ingresso.php">Consultar Ingressos</a></li>
-    </ul>
-
-    <p><a href="Login_cliente.php">Sair</a></p>
+        <h3>Opções</h3>
+        <ul>
+            <li><a href="Consultar_ingresoo.php">Consultar Ingresso</a></li>
+        </ul>
+    </div>
 </body>
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/Style_login.css">
 </html>

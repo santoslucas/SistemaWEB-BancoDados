@@ -24,7 +24,16 @@
 <body>
     <div class="header">
         <h1>TESSERACT</h1>
-        <a href="pagina_principal.php" class="logout">Sair</a>
+        <div class="buttons">
+            <?php
+            session_start();
+            if (isset($_SESSION['email'])) {
+                $email = $_SESSION['email'];
+                echo '<a href="perfil.php">' . $email . '</a>';
+            }
+            ?>
+             <a href="Redireciona_principal.php" class="logout"><?php if(isset($_SESSION['email'])) echo 'Sair'; else echo 'Login'; ?></a>
+        </div>
     </div>
 
     <!-- Adicione o carrossel de imagens -->

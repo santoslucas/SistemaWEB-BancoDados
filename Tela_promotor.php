@@ -46,12 +46,9 @@
             if (isset($_SESSION['email'])) {
                 $email = $_SESSION['email'];
                 echo '<a href="perfil.php">' . $email . '</a>';
-            } else {
-                echo '<a href="Login.php">Login</a>';
-                header('Location: Login_promotor.php');
             }
             ?>
-            <a href="Deslogar.php">Sair</a>
+             <a href="Redireciona_principal.php" class="logout"><?php if(isset($_SESSION['email'])) echo 'Sair'; else echo 'Login'; ?></a>
         </div>
     </div>
 
@@ -61,11 +58,12 @@
 
         <h3>Opções</h3>
         <ul>
-            <li><a href="consultar_eventos.php">Consultar Eventos</a></li>
-            <li><a href="cadastrar_evento.php">Cadastrar Evento</a></li>
-            <li><a href="cadastrar_cupom.php">Cadastrar Cupom</a></li>
+            <li><a href="Promotor_consulta_evento.php">Consultar Eventos</a></li>
+            <li><a href="Form_inserir_evento.php">Cadastrar Evento</a></li>
+            <li><a href="Form_cadastrar_cupom.php">Cadastrar Cupom</a></li>
         </ul>
     </div>
 </body>
 <link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/Style_login.css">
 </html>

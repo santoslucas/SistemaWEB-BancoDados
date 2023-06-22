@@ -7,17 +7,14 @@
 <div class="header">
         <h1>TESSERACT</h1>
         <div class="buttons">
-          <?php
-          session_start();
-          if (isset($_SESSION['email'])) {
-            $email = $_SESSION['email'];
-            echo '<a href="perfil.php">' . $email . '</a>';
-          } else {
-            echo '<a href="Login_promotor.php">Login</a>';
-            header('Location: Login_promotor.php');
+            <?php
+            session_start();
+            if (isset($_SESSION['email'])) {
+              $email = $_SESSION['email'];
+              echo '<a href="perfil.php">' . $email . '</a>';
           }
-          ?>
-          <a href="pagina_principal.php">Sair</a>
+            ?>
+             <a href="Redireciona_principal.php" class="logout"><?php if(isset($_SESSION['email'])) echo 'Sair'; else echo 'Login'; ?></a>
         </div>
     </div>
   <div class="form-container">
