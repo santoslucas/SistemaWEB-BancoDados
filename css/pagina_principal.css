@@ -74,3 +74,10 @@ body {
     text-decoration: none;
     margin-left: 20px;
 }
+
+.linha-horizontal {
+    height: 2px; /* Altura da linha horizontal */
+    background-color: #9370DB; /* Cor de fundo da linha horizontal */
+    margin: 10px 0; /* Margem superior e inferior da linha horizontal */
+    width: 100%; /* Largura da linha horizontal */
+  }

@@ -51,6 +51,9 @@ if($_POST['Email'] && $_POST['Nome'] && $_POST['Senha'] && $_POST['CPF'] && $_PO
 
 
     oci_commit($c);
+    session_start();
+    $_SESSION['email'] = $_POST['Email'];
+    header("Location: Tela_cliente.php");
 
 }
 

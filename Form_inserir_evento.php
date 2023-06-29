@@ -2,7 +2,7 @@
 <html>
 <body>
   <div class="header">
-    <h1>TESSERACT</h1>
+    <h1><a href="Pagina_principal.php" style="color: white; text-decoration: none;">TESSERACT</a></h1>
     <div class="buttons">
             <?php
             session_start();
@@ -48,7 +48,7 @@
       </div>
       <br>
       <div class="center-button">
-        <input type="submit" value="Inserir ingresso">
+        <input type="submit" value="Inserir evento">
       </div>
     </form>
   </div>

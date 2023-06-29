@@ -23,7 +23,7 @@
 </head>
 <body>
   <div class="header">
-    <h1>TESSERACT</h1>
+    <h1><a href="Pagina_principal.php" style="color: white; text-decoration: none;">TESSERACT</a></h1>
     <div class="buttons">
             <?php
             session_start();

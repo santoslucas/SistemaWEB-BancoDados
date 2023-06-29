@@ -36,6 +36,8 @@ if($_POST['ID'] && $_POST['ID_evento'] && $_POST['Desconto']){
         if (!$s) {
             $m = oci_error($c);
             trigger_error("Não pôde compilar a sentença: ". $m["message"], E_USER_ERROR);
+            header("Location: Form_cadastrar_cupom_erro.php");
+            exit;
         }
 
         oci_bind_by_name($s, ":1", $_POST['ID']);
@@ -46,16 +48,19 @@ if($_POST['ID'] && $_POST['ID_evento'] && $_POST['Desconto']){
 
         if (!$r) {
             $m = oci_error($s);
-            trigger_error("Não pôde executar a sentença: ". $m["message"], E_USER_ERROR);
+            header("Location: Form_cadastrar_cupom_erro.php");
+            exit;
         }
 
         oci_commit($c);
         
-        echo "Cupom criado!";
+        header("Location: Form_cadastrar_cupom_criado.php");
+        exit;
 
     } else {
         //evento não existe
-        echo "O evento de ID :IDEvento não existe";
+        header("Location: Form_cadastrar_cupom_erro.php");
+        exit;
     }
 
 

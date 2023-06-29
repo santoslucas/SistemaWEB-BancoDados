@@ -39,7 +39,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>TESSERACT</h1>
+        <h1><a href="Pagina_principal.php" style="color: white; text-decoration: none;">TESSERACT</a></h1>
         <div class="buttons">
             <?php
             session_start();
@@ -58,7 +58,7 @@
 
         <h3>Opções</h3>
         <ul>
-            <li><a href="Promotor_consulta_evento.php">Consultar Eventos</a></li>
+            <li><a href="Consulta_evento.php">Consultar Eventos</a></li>
             <li><a href="Form_inserir_evento.php">Cadastrar Evento</a></li>
             <li><a href="Form_cadastrar_cupom.php">Cadastrar Cupom</a></li>
         </ul>

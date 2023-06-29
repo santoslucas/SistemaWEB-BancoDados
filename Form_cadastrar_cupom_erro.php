@@ -19,28 +19,24 @@
   </div>
   <div class="form-container">
     <h3>Insira seus dados</h3>
-    <form method="post" action="Cadastrar_Promotor.php">
+    <form method="post" action="Criar_cupom.php">
       <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="text" name="Email">
+        <label for="ID">ID:</label>
+        <input type="text" name="ID">
       </div>
       <br>
       <div class="form-group">
-        <label for="nome">Nome:</label>
-        <input type="text" name="Nome">
+        <label for="ID_evento">ID_Evento:</label>
+        <input type="text" name="ID_evento">
       </div>
       <br>
       <div class="form-group">
-        <label for="senha">Senha:</label>
-        <input type="text" name="Senha">
+        <label for="Desconto">Porcentagem de Desconto:</label>
+        <input type="text" name="Desconto">
       </div>
       <br>
-      <div class="form-group">
-        <label for="cnpj">CNPJ:</label>
-        <input type="number" name="CNPJ">
-      </div>
-      <br>
-      <input type="submit" value="Criar conta">
+      <input type="submit" value="Criar cupom">
+      <br> Dados incorretos
     </form>
   </div>
 </body>

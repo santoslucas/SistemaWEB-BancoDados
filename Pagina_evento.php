@@ -33,7 +33,6 @@
     $descricao = $evento['DESCRICAO'];
     $valor = $evento['VALOR'];
     $local = $evento['LOCAL'];
-    $qtd_ingressos = $evento['QTD_INGRESSOS'];
     $email_promotor = $evento['EMAIL_PROMOTOR'];
     
     $query = "SELECT * FROM USUARIO U WHERE U.Email = '$email_promotor'";
@@ -45,15 +44,37 @@
     $nome_promotor = $promotor['NOME'];
 ?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
-    <h1><?php echo $nome; ?></h1>
+    <title> <?php echo $nome?> </title>
 </head>
 <body>
-    <h3>Descricao:</h3>
-    <p><?php echo $descricao; ?></p>
-    <p><a href="Form_comprar_ingresso.php">Comprar</a></p>
+    <div class="header">
+        <h1><a href="Pagina_principal.php" style="color: white; text-decoration: none;">TESSERACT</a></h1>
+        <div class="buttons">
+            <?php
+            if (isset($_SESSION['email'])) {
+                $email = $_SESSION['email'];
+                echo '<a href="perfil.php">' . $email . '</a>';
+            }
+            ?>
+             <a href="Redireciona_principal.php" class="logout"><?php if(isset($_SESSION['email'])) echo 'Sair'; else echo 'Login'; ?></a>
+        </div>
+    </div>
+    <div class="form-container">
+        <h2> <?php echo $nome ?> </h2>
+        <h4> Promotor: <?php echo $nome_promotor; ?><h4>
+        <h3>Descrição:</h3>
+        <?php echo $descricao; ?> <br><br>
+        <?php echo '<b>Local:</b>' . $local; ?><br><br>
+        <form action='Form_comprar_ingresso.php' method='GET'>
+        <h4>Preço inteira: <?php echo 'R$' . number_format($valor, 2, ',') ?> | Preço meia: <?php echo 'R$' . number_format($valor/2, 2, ',') ?></h4>
+        <button type='submit' class='evento-button'>Comprar</button>
+        </form><br>
+
+    </div>
 </body>
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/Style_login.css">
 </html>
